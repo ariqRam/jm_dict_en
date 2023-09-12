@@ -11,26 +11,19 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A package that parses and prepares a dictionary object from [JMdict](https://www.edrdg.org/wiki/index.php/Main_Page)
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+TBD
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+TBD
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
+TBD
 
 ## Additional information
 

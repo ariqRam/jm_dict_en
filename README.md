@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-A package that parses and prepares a dictionary object from [JMdict](https://www.edrdg.org/wiki/index.php/Main_Page)
+A Dart package that parses and prepares a dictionary object from [JMdict](https://www.edrdg.org/wiki/index.php/Main_Page).
 
 ## Features
 

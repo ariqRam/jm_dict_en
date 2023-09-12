@@ -1,7 +1,7 @@
 name: jm_dict_en
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: "https://github.com/ramdhanyA/jm_dict_en"
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  xml: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +23,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  assets:
+    - assets/
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

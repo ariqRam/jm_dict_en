@@ -1,7 +1,7 @@
 library jm_dict_en;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:xml/xml.dart';
+
+void loadDictionaryFromXml({String xmlString = "assets/JMdict_e.xml"}) {
+  final document = XmlDocument.parse(xmlString);
 }

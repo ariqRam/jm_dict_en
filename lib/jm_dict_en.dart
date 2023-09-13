@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:jm_dict_en/dictionary.dart';
 
 Future<void> main() async {
-  Dictionary dict = Dictionary();
   final file = File("assets/JMdict_e.xml");
   final contents = await file.readAsString();
-  dict.loadFromXml(xmlString: contents);
+  Dictionary? dict = Dictionary.loadFromXml(contents);
+  print(dict?.entries.word.elementAt(0));
 }

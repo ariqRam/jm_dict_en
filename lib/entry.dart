@@ -1,30 +1,22 @@
 import 'package:xml/xml.dart';
 
 class Entries {
-  final List<Entry> entries;
-  Entries(this.entries);
+  final List<Entry> word;
+  Entries(this.word);
+
+  static Entries generateFromXmlNodeList(List<XmlNode> nodes) {
+    final List<Entry> entries = [];
+    for (var node in nodes) {
+      entries.add(Entry(node.innerText, node.innerText, node.innerText));
+    }
+    return Entries(entries);
+  }
 }
 
-class Entry extends XmlNode {
-  final XmlElement element;
+class Entry {
   final String word;
   final String definition;
   final String partOfSpeech;
 
-  Entry(this.word, this.definition, this.partOfSpeech)
-      : element = XmlElement(XmlName('entry')),
-        super();
-
-  @override
-  XmlNode copy() {
-    return Entry(word, definition, partOfSpeech);
-  }
-
-  @override
-  void accept(XmlVisitor visitor) {
-    visitor.visitElement(element);
-  }
-
-  @override
-  XmlNodeType get nodeType => XmlNodeType.ELEMENT;
+  Entry(this.word, this.definition, this.partOfSpeech);
 }

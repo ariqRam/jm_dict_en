@@ -8,5 +8,7 @@ Future<void> main() async {
   final file = File("assets/JMdict_e.xml");
   final contents = await file.readAsString();
   Dictionary? dict = Dictionary.loadFromXml(contents);
-  print(dict?.entries.word.elementAt(0));
+  print(dict?.entries.wordlist.elementAt(10).gloss);
+  print(dict?.entries.wordlist.elementAt(10).seq);
+  print(dict?.entries.wordlist.elementAt(10).reb);
 }

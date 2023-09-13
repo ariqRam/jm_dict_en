@@ -8,8 +8,11 @@ class Dictionary {
 
   static Dictionary? loadFromXml(String xmlString) {
     final document = XmlDocument.parse(xmlString);
+    print(document.rootElement.name.qualified);
     final dict = Dictionary(
-      Entries.generateFromXmlNodeList(document.children.toList()),
+      Entries.generateFromXmlNodeList(
+        document.rootElement.findElements('*').toList(),
+      ),
     );
     return dict;
   }

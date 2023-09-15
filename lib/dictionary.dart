@@ -10,32 +10,35 @@ class Dictionary {
 
   static Dictionary? loadFromXml(String xmlString) {
     final XmlDocument dictionaryDocument = XmlDocument.parse(xmlString);
-    final rootElements = dictionaryDocument.rootElement.findElements('*').toList();
+    final childrenOfRoot = dictionaryDocument.rootElement.findElements('*').toList();
+
     final List<Entry> entries = [];
-    for (var entryElement in rootElements) {
-      final keb = entryElement.getElement('keb')?.localName;
-      final reb = parseStringFromElement(entryElement.getElement('r_ele'), 'reb');
-      final gloss = parseStringFromElement(entryElement.getElement('sense'), 'gloss');
-      final seq = parseSeq(entryElement.getElement('ent_seq'));
+
+    for (var entryElement in childrenOfRoot) {
+      final keb = _parseStringFromElement(entryElement.getElement('k_ele'), 'keb');
+      final reb = _parseStringFromElement(entryElement.getElement('r_ele'), 'reb');
+      final gloss = _parseStringFromElement(entryElement.getElement('sense'), 'gloss');
+      final seq = _parseSeq(entryElement.getElement('ent_seq'));
+
       entries.add(
         Entry(keb, reb, gloss, seq),
       );
     }
+
     print(dictionaryDocument.rootElement.name.qualified);
-    final dict = Dictionary(
-      entries,
-    );
+
+    final dict = Dictionary(entries);
     return dict;
   }
 
-  static int parseSeq(XmlElement? seqElement) {
+  static int _parseSeq(XmlElement? seqElement) {
     if (seqElement == null) {
       return -1;
     }
     return int.parse(seqElement.innerText);
   }
 
-  static String parseStringFromElement(XmlElement? parentOfTarget, String targetName) {
+  static String _parseStringFromElement(XmlElement? parentOfTarget, String targetName) {
     if (parentOfTarget == null) {
       return "$targetName Not Found";
     } else if (parentOfTarget.name.local == targetName) {
@@ -44,6 +47,6 @@ class Dictionary {
 
     XmlElement? targetElement = parentOfTarget.getElement(targetName);
 
-    return parseStringFromElement(targetElement, targetName);
+    return _parseStringFromElement(targetElement, targetName);
   }
 }

@@ -25,8 +25,6 @@ class Dictionary {
       );
     }
 
-    print(dictionaryDocument.rootElement.name.qualified);
-
     final dict = Dictionary(entries);
     return dict;
   }
@@ -48,5 +46,9 @@ class Dictionary {
     XmlElement? targetElement = parentOfTarget.getElement(targetName);
 
     return _parseStringFromElement(targetElement, targetName);
+  }
+
+  Entry search(String word) {
+    return wordEntries.firstWhere((element) => element.reb == word || element.keb == word);
   }
 }

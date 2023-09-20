@@ -17,7 +17,8 @@ class Dictionary {
     for (var entryElement in childrenOfRoot) {
       final keb = _parseStringFromElement(entryElement.getElement('k_ele'), 'keb');
       final reb = _parseStringFromElement(entryElement.getElement('r_ele'), 'reb');
-      final gloss = _parseStringFromElement(entryElement.getElement('sense'), 'gloss');
+      final gloss =
+          _parseMultipleStringFromElements(entryElement.findAllElements('sense'), 'gloss');
       final seq = _parseSeq(entryElement.getElement('ent_seq'));
 
       entries.add(
@@ -34,6 +35,13 @@ class Dictionary {
       return -1;
     }
     return int.parse(seqElement.innerText);
+  }
+
+  static List<String> _parseMultipleStringFromElements(
+    Iterable<XmlElement?> elements,
+    String targetName,
+  ) {
+    return elements.map((element) => _parseStringFromElement(element, targetName)).toList();
   }
 
   static String _parseStringFromElement(XmlElement? parentOfTarget, String targetName) {

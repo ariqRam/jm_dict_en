@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 library jm_dict_en;
 
 import 'dart:io';
@@ -11,4 +13,5 @@ Future<void> main() async {
   print(dict?.wordEntries.elementAt(100).gloss);
   print(dict?.wordEntries.elementAt(100).seq);
   print(dict?.wordEntries.elementAt(100).reb);
+  print(dict?.search("言葉").gloss);
 }

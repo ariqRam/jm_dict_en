@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+import 'dart:io';
 
 import 'package:jm_dict_en/entry.dart';
 import 'package:xml/xml.dart';
@@ -8,7 +8,13 @@ class Dictionary {
 
   Dictionary(this.wordEntries);
 
-  static Dictionary? loadFromXml(String xmlString) {
+  static Dictionary? fromXmlPath(String filepath) {
+    final file = File(filepath);
+    final contents = file.readAsStringSync();
+    return fromXmlString(contents);
+  }
+
+  static Dictionary? fromXmlString(String xmlString) {
     final XmlDocument dictionaryDocument = XmlDocument.parse(xmlString);
     final childrenOfRoot = dictionaryDocument.rootElement.findElements('*').toList();
 

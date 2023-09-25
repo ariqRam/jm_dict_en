@@ -1,29 +1,22 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
 A Dart package that parses and prepares a dictionary object from [JMdict](https://www.edrdg.org/wiki/index.php/Main_Page).
 
 ## Features
 
-TBD
-
-## Getting started
-
-TBD
+Exposes JMdict project to Dart.
 
 ## Usage
 
-TBD
+```
+final file = File("assets/JMdict_e.xml");
+final contents = await file.readAsString();
+
+Dictionary? dict = Dictionary.fromXmlString(contents);
+
+print(dict?.wordEntries.elementAt(100).gloss);
+print(dict?.wordEntries.elementAt(100).seq);
+print(dict?.wordEntries.elementAt(100).reb);
+print(dict?.search("言葉").gloss);
+```
 
 ## Additional information
 
@@ -71,3 +64,4 @@ JMdict
 |           |-- ex_sent (Example sentence)
 |               |-- @xml:lang (default is "eng")
 ```
+For more information, visit [JMdict documentation](https://www.edrdg.org/wiki/index.php/Main_Page).

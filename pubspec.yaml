@@ -1,5 +1,6 @@
 name: jm_dict_en
-description: A new Flutter package project.
+description: Exposes JMdict project to Dart.
+license: MIT
 version: 0.0.1
 homepage: "https://github.com/ramdhanyA/jm_dict_en"
 

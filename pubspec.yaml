@@ -1,7 +1,7 @@
 name: jm_dict_en
 description: Exposes JMdict project to Dart.
 license: MIT
-version: 0.0.1
+version: 0.1.1
 homepage: "https://github.com/ramdhanyA/jm_dict_en"
 
 environment:

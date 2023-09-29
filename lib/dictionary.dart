@@ -8,13 +8,13 @@ class Dictionary {
 
   Dictionary(this.wordEntries);
 
-  static Dictionary? fromXmlPath(String filepath) {
+  static Dictionary fromXmlPath(String filepath) {
     final file = File(filepath);
     final contents = file.readAsStringSync();
     return fromXmlString(contents);
   }
 
-  static Dictionary? fromXmlString(String xmlString) {
+  static Dictionary fromXmlString(String xmlString) {
     final XmlDocument dictionaryDocument = XmlDocument.parse(xmlString);
     final childrenOfRoot = dictionaryDocument.rootElement.findElements('*').toList();
 

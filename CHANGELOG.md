@@ -8,3 +8,6 @@
 
 ## 0.1.1
 * changed return value to Dictionary
+
+## 0.1.2
+* Removed null from return values

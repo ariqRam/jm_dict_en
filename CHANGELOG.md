@@ -11,3 +11,6 @@
 
 ## 0.1.2
 * Removed null from return values
+
+## 0.1.3
+* Added not found case on `Dictionary.search`

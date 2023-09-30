@@ -63,6 +63,7 @@ class Dictionary {
   }
 
   Entry search(String word) {
-    return wordEntries.firstWhere((element) => element.reb == word || element.keb == word);
+    return wordEntries.firstWhere((element) => element.reb == word || element.keb == word,
+        orElse: () => Entry("Not found", "Not found", [], -1));
   }
 }

@@ -16,15 +16,18 @@ class Dictionary {
 
   static Dictionary fromXmlString(String xmlString) {
     final XmlDocument dictionaryDocument = XmlDocument.parse(xmlString);
-    final childrenOfRoot = dictionaryDocument.rootElement.findElements('*').toList();
+    final childrenOfRoot =
+        dictionaryDocument.rootElement.findElements('*').toList();
 
     final List<Entry> entries = [];
 
     for (var entryElement in childrenOfRoot) {
-      final keb = _parseStringFromElement(entryElement.getElement('k_ele'), 'keb');
-      final reb = _parseStringFromElement(entryElement.getElement('r_ele'), 'reb');
-      final gloss =
-          _parseMultipleStringFromElements(entryElement.findAllElements('sense'), 'gloss');
+      final keb =
+          _parseStringFromElement(entryElement.getElement('k_ele'), 'keb');
+      final reb =
+          _parseStringFromElement(entryElement.getElement('r_ele'), 'reb');
+      final gloss = _parseMultipleStringFromElements(
+          entryElement.findAllElements('sense'), 'gloss');
       final seq = _parseSeq(entryElement.getElement('ent_seq'));
 
       entries.add(
@@ -43,16 +46,19 @@ class Dictionary {
     return int.parse(seqElement.innerText);
   }
 
-  static List<String> _parseMultipleStringFromElements(
+  static List<String?> _parseMultipleStringFromElements(
     Iterable<XmlElement?> elements,
     String targetName,
   ) {
-    return elements.map((element) => _parseStringFromElement(element, targetName)).toList();
+    return elements
+        .map((element) => _parseStringFromElement(element, targetName))
+        .toList();
   }
 
-  static String _parseStringFromElement(XmlElement? parentOfTarget, String targetName) {
+  static String? _parseStringFromElement(
+      XmlElement? parentOfTarget, String targetName) {
     if (parentOfTarget == null) {
-      return "$targetName Not Found";
+      return null;
     } else if (parentOfTarget.name.local == targetName) {
       return parentOfTarget.innerText;
     }
@@ -63,7 +69,11 @@ class Dictionary {
   }
 
   Entry search(String word) {
-    return wordEntries.firstWhere((element) => element.reb == word || element.keb == word,
+    return wordEntries.firstWhere(
+        (element) =>
+            element.reb == word ||
+            element.keb == word ||
+            element.gloss.contains(word),
         orElse: () => Entry("Not found", "Not found", [], -1));
   }
 }

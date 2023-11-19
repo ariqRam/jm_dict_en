@@ -75,5 +75,20 @@ class Dictionary {
             element.keb == word ||
             element.gloss.contains(word),
         orElse: () => Entry("Not found", "Not found", [], -1));
+    // try {
+    //   return wordEntries
+    //       .findAllElements('entry')
+    //       .map((entryElement) => Entry.fromXmlElement(entryElement))
+    //       .firstWhere(
+    //         (entry) =>
+    //             entry.reb == word ||
+    //             entry.keb == word ||
+    //             entry.gloss.contains(word),
+    //         orElse: () => Entry("Not found", "Not found", [], -1),
+    //       );
+    // } catch (e) {
+    //   print('Error reading/parsing the XML file: $e');
+    //   return Entry("Error", "Error", [], -1);
+    // }
   }
 }

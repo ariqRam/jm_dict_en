@@ -29,9 +29,10 @@ class Dictionary {
       final gloss = _parseMultipleStringFromElements(
           entryElement.findAllElements('sense'), 'gloss');
       final seq = _parseSeq(entryElement.getElement('ent_seq'));
+      final example = _parseExample(entryElement.getElement('example'));
 
       entries.add(
-        Entry(keb, reb, gloss, seq),
+        Entry(keb, reb, gloss, seq, example),
       );
     }
 
@@ -68,13 +69,25 @@ class Dictionary {
     return _parseStringFromElement(targetElement, targetName);
   }
 
+  static List<String?> _parseExample(XmlElement? exampleElement) {
+    if (exampleElement == null) {
+      return [];
+    }
+
+    List<String> example = [];
+    for (XmlElement child in exampleElement.childElements) {
+      example.add(child.innerText);
+    }
+    return example;
+  }
+
   Entry search(String word) {
     return wordEntries.firstWhere(
         (element) =>
             element.reb == word ||
             element.keb == word ||
             element.gloss.contains(word),
-        orElse: () => Entry("Not found", "Not found", [], -1));
+        orElse: () => Entry("Not found", "Not found", [], -1, []));
     // try {
     //   return wordEntries
     //       .findAllElements('entry')
